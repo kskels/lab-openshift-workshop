@@ -1,7 +1,18 @@
-WORKSHOP_NAME=lab-markdown-sample
-WORKSHOP_IMAGE=quay.io/openshifthomeroom/lab-markdown-sample:1.10
-WORKSHOP_TITLE="Markdown Sample"
-WORKSHOP_DESCRIPTION="A sample workshop using Markdown"
+WORKSHOP_NAME=lab-openshift-workshop
+WORKSHOP_IMAGE=quay.io/kskels/lab-openshift-workshop:1.0
+WORKSHOP_TITLE="OpenShift Workshop"
+WORKSHOP_DESCRIPTION="Supporting labs for a generic OpenShift workshop"
+
+TERMINAL_IMAGE=quay.io/openshifthomeroom/workshop-terminal:3.4.3
+DASHBOARD_IMAGE=quay.io/openshifthomeroom/workshop-dashboard:5.0.1
+SPAWNER_IMAGE=quay.io/openshifthomeroom/workshop-spawner:7.2.2
+CONSOLE_IMAGE=quay.io/openshift/origin-console:4.8.0
+
+SPAWNER_VERSION=7.2.2
+SPAWNER_MODE=learning-portal
+
+DASHBOARD_VERSION=5.0.1
+
 RESOURCE_BUDGET=medium
-MAX_SESSION_AGE=3600
-IDLE_TIMEOUT=300
+MAX_SESSION_AGE=14400
+IDLE_TIMEOUT=3600
