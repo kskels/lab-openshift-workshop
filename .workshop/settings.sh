@@ -9,7 +9,8 @@ SPAWNER_IMAGE=quay.io/openshifthomeroom/workshop-spawner:7.2.2
 CONSOLE_IMAGE=quay.io/openshift/origin-console:4.8.0
 
 SPAWNER_VERSION=7.2.2
-SPAWNER_MODE=learning-portal
+#SPAWNER_MODE=learning-portal
+SPAWNER_MODE=hosted-workshop
 
 DASHBOARD_VERSION=5.0.1
 
