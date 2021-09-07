@@ -1,16 +1,25 @@
-This hands-on lab helps users to get familiar with declarative application deplopyment and configuration.
+This hands-on lab helps users to get familiar with declarative application deplopyment and explores configuration aspects of the application.
 
 We will be using YAML manfiests for application deployments. While JSON is also supported, YAML is more wide-spread and tends to be more user-friendly. Please take a look at the Kubernetes [configuration tips](https://kubernetes.io/docs/concepts/configuration/overview/) for more information.
+
+We will start with simple bare-bones application manifest and keep addding various features and concepts such as labels, environment variables, secrets, health probes, and resource limits.
+
+If any issues encountered to copy contents into the terminal, you may optionally clone the repo and you will find all the snippets under `deploy/labs`
+
+```bash
+git clone https://github.com/kskels/spring-app.git
+```
 
 ### Create a New Project
 
 ```bash
-oc new-project user2-project3
+export OPENSHIFT_USERNAME=`oc whoami`
+oc new-project ${OPENSHIFT_USERNAME}-proj3
 ```
 
 ### Deploy the Spring Boot Application
 
-The following is a single replica deployment of a container image running Spring Boot application. Copy the contents and save them as a `.yaml` file, for example `spring-app-deployment.yaml`.
+The following is a single replica deployment of a container image running Spring Boot web application. Copy the contents and save them as a `.yaml` file, for example `spring-app-deployment.yaml`.
 
 
 ```yaml
@@ -38,7 +47,7 @@ spec:
 Use the `oc` command line interface to deploy the manifest.
 
 ```bash
-oc apply -f spring-app-deployment.yaml
+oc create -f spring-app-deployment.yaml
 ```
 
 Once applied, explore objects created by the `Deployment` configuration. Observe three objects created `pod`, `replicaset`, and `deployment`.
@@ -47,14 +56,14 @@ Once applied, explore objects created by the `Deployment` configuration. Observe
 oc get all
 ```
 
-You can further inspect each object with `describe` and `get` commands.
+You can further inspect each object with `describe` and `get` commands
 
 ```bash
 oc describe deploy/spring-app
 oc get -o yaml deploy/spring-app
 ```
 
-For futher exploring, once the `Pod` is in a `Running` state, you are able to access the pod itself.
+For futher exploring, once the `Pod` is in a `Running` state, you are able to access the containers
 
 ```bash
 oc get pods
@@ -70,7 +79,7 @@ oc exec -it spring-app-bbf96556-zlznz -- bash
 
 Please see general information on [labels and selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
 
-From more practical view, switch between the namespaces `user2-project1` and `user2-project3` and observe the labels automatically created by OpenShift when applications are deployed via `oc new-app` and the Web UI. 
+From more practical view, switch between the namespaces `${OPENSHIFT_USERNAME}-proj1` and `${OPENSHIFT_USERNAME}-proj3` and observe the labels that were automatically created by OpenShift when applications are deployed via `oc new-app` and the Web Console. 
 
 Here are some [common labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/) for Kuberentes.
 
@@ -101,7 +110,7 @@ spec:
         - containerPort: 8080
 ```
 
-Use the `oc` command line interface to apply the latest manifest.
+Use the `oc` command line interface to apply the latest manifest
 
 ```bash
 oc apply -f spring-app-deployment.yaml
@@ -118,7 +127,7 @@ spring-app   1/1     1            1           76m
 
 ### Environment Variables
 
-Use the `env` section under `spec.template.spec.containers.spring-app` to setup environment variables for a speicifc `Pod`.
+Use the `env` section to setup environment variables for a specific container
 
 ```yaml
 apiVersion: apps/v1
@@ -152,7 +161,7 @@ spec:
 ```
 
 
-Use the `oc` command line interface to apply the latest manifest.
+Use the `oc` command line interface to apply the latest manifest
 
 ```bash
 oc apply -f spring-app-deployment.yaml
@@ -176,7 +185,7 @@ A Secret is an object that contains a small amount of sensitive data such as a p
 
 As examples, for CI/CD workloads you would be storing credentials to Docker repositories to push/pull images, storing tokens to artifact systems to upload logs and build artifacts, and similarly in production systems to keep access credentials towards databases, etc.
 
-For the pod/application, the `Secrets` can be accessed via container environment variables and as files in a volume mounted to a container.
+The `Secrets` can be accessed via container environment variables and/or as files in a volume mounted to a container.
 
 #### Create a Secret
 
@@ -209,7 +218,7 @@ oc get secrets
 
 #### Add Secrets to the Deployment
 
-Update the deployment with both environment variables and volume mounts using the secret.
+Update the deployment with both environment variables and also volumes using the secret
 
 ```yaml
 apiVersion: apps/v1
@@ -266,13 +275,13 @@ spec:
           secretName: spring-app-secret
 ```
 
-Use the `oc` command line interface to apply the latest manifest.
+Use the `oc` command line interface to apply the latest manifest
 
 ```bash
 oc apply -f spring-app-deployment.yaml
 ```
 
-Explore the changes from the inside of the container.
+Explore the changes from the inside of the container
 
 ```bash
 oc get pods
@@ -296,7 +305,7 @@ tekton123!
 
 Health probes is a mechanism to detect and handle unhealthy containers. See more information at [monitoring application health](https://docs.openshift.com/container-platform/4.8/applications/application-health.html).
 
-In the following example we will setup a `readinessProbe` to ensure the application's web interface is available.
+In the following example we will setup a `readinessProbe` to ensure the application's web interface is available
 
 ```yaml
 apiVersion: apps/v1
@@ -360,7 +369,7 @@ spec:
           secretName: spring-app-secret
 ```
 
-Use the `oc` command line interface to apply the latest manifest.
+Use the `oc` command line interface to apply the latest manifest
 
 ```bash
 oc apply -f spring-app-deployment.yaml
@@ -452,7 +461,7 @@ spec:
           secretName: spring-app-secret
 ```
 
-Use the `oc` command line interface to apply the latest manifest.
+Use the `oc` command line interface to apply the latest manifest
 
 ```bash
 oc apply -f spring-app-deployment.yaml
@@ -468,3 +477,7 @@ spring-app-66f58bcc98-4q526   1/1     Running   0          66s
 oc describe po/spring-app-66f58bcc98-4q526
 (...)
 ```
+
+### Review from Web Console
+
+Switch back to the Console and explore newly created objects.

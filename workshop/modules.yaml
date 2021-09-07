@@ -8,7 +8,7 @@ modules:
     exercises/01-getting-started-with-app-deployment:
         name: Getting Started with Application Deployment
     exercises/02-declarative-app-deployment-and-configuration:
-        name: Declarative Deployments
+        name: Declarative Application Deployments
     exercises/03-services-and-routes:
         name: Services and Routes
     exercises/04-deployment-strategies:

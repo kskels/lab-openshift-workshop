@@ -1,9 +1,17 @@
 This hands-on lab helps users to get familiar with Services and Routes.
 
+
+If any issues encountered to copy contents into the terminal, you may optionally clone the repo and you will find all the snippets under `deploy/labs`
+
+```bash
+git clone https://github.com/kskels/aspnet-core-app
+```
+
 ### Create a Project
 
 ```bash
-oc new-project user2-project4
+export OPENSHIFT_USERNAME=`oc whoami`
+oc new-project ${OPENSHIFT_USERNAME}-proj4
 ```
 
 ### Services
@@ -197,5 +205,6 @@ ASPNET_CORE_REDIS_PORT_6379_TCP_PROTO=tcp
 (...)
 ```
 
-Explore all resources created via Web UI.
+### Review from Web Console
 
+Switch back to the Console and explore newly created objects.

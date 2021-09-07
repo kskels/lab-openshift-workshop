@@ -3,7 +3,8 @@ This hands-on lab helps users to get familiar with [deployment strategies](https
 ### Create a Project
 
 ```bash
-oc new-project user2-project5
+export OPENSHIFT_USERNAME=`oc whoami`
+oc new-project ${OPENSHIFT_USERNAME}-proj5
 ```
 
 ### Rolling Strategy

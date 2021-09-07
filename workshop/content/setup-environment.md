@@ -1,9 +1,22 @@
-Include in this page any steps which should be run by a user to check that the workshop environment is setup correctly. Exactly what you provide in this step will depend on whether the workshop is designed to be deployed in a specific way.
+This lab uses OpenShift Container Platform 4.8 cluster that is provisioned with Red Hat Product Demo System. The cluster is setup temporary and will be decommissioned soon after the workshop is concluded.
 
-It is a good idea in this page to provide at least one sample command to run which is marked with the `execute` annotation so anyone doing the workshop understands they can click on marked commands to run them. For example:
+There will be multiple persons using the system with unique usernames. Setup OpenShift username environment variable as you will be assigned one during the introduction of the workshop.
 
-```execute
-date
+The workshop instructions will use `user2` but expect it to be unique per participant.
+
+```bash
+oc whoami
+export OPENSHIFT_USERNAME=`oc whoami`
+
+echo ${OPENSHIFT_USERNAME}
 ```
 
-Did you type the command in yourself? If you did, click on the command instead and you will find that it is executed for you. You can click on any command which has the <span class="fas fa-play-circle"></span> icon shown to the right of it, and it will be copied to the interactive terminal and run. If you would rather make a copy of the command so you can paste it to another window, hold down the shift key when you click on the command.
+Create and delete a project to make sure all necessary permissions are in place
+
+```bash
+oc new-project ${OPENSHIFT_USERNAME}-proj0
+oc get projects
+
+oc delete project ${OPENSHIFT_USERNAME}-proj0
+oc get projects
+```
