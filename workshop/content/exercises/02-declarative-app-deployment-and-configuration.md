@@ -1,10 +1,10 @@
-This hands-on lab helps users to get familiar with declarative application deplopyment and explores configuration aspects of the application.
+This hands-on lab helps users to get familiar with declarative application deployment and explores configuration aspects of the application.
 
-We will be using YAML manfiests for application deployments. While JSON is also supported, YAML is more wide-spread and tends to be more user-friendly. Please take a look at the Kubernetes [configuration tips](https://kubernetes.io/docs/concepts/configuration/overview/) for more information.
+We will be using YAML manifests for application deployments. While JSON is also supported, YAML is more wide-spread and tends to be more user-friendly. Please take a look at the Kubernetes [configuration tips](https://kubernetes.io/docs/concepts/configuration/overview/) for more information.
 
-We will start with simple bare-bones application manifest and keep addding various features and concepts such as labels, environment variables, secrets, health probes, and resource limits.
+We will start with simple bare-bones application manifest and keep adding various features and concepts such as labels, environment variables, secrets, health probes, and resource limits.
 
-If any issues encountered to copy contents into the terminal, you may optionally clone the repo and you will find all the snippets under `deploy/labs`
+If you encounter any issues copying the contents into the terminal, you may optionally clone the repo and you will find all the code snippets under `deploy/labs`
 
 ```bash
 git clone https://github.com/kskels/spring-app.git
@@ -79,9 +79,9 @@ oc exec -it spring-app-bbf96556-zlznz -- bash
 
 Please see general information on [labels and selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
 
-From more practical view, switch between the namespaces `${OPENSHIFT_USERNAME}-proj1` and `${OPENSHIFT_USERNAME}-proj3` and observe the labels that were automatically created by OpenShift when applications are deployed via `oc new-app` and the Web Console. 
+For a more practical view, switch between the namespaces `${OPENSHIFT_USERNAME}-proj1` and `${OPENSHIFT_USERNAME}-proj3` and observe the labels that were automatically created by OpenShift when applications are deployed via `oc new-app` and the Web Console. 
 
-Here are some [common labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/) for Kuberentes.
+Here are some [common labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/) for Kubernetes.
 
 These labels can be setup as part of the deployment, for example
 
@@ -209,7 +209,7 @@ Use the `oc` command line interface to create the secret
 oc create -f spring-app-secret.yaml
 ```
 
-Observe newly crated secret among system pre-created ones for the project.
+Observe newly created secret among system pre-created ones for the project.
 
 ```bash
 oc get secrets
