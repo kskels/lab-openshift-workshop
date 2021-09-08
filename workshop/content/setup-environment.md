@@ -1,6 +1,6 @@
-This lab uses OpenShift Container Platform 4.8 cluster that is provisioned with Red Hat Product Demo System. The cluster is setup temporary and will be decommissioned soon after the workshop is concluded.
+This lab uses OpenShift Container Platform 4.8 cluster that is provisioned with Red Hat Product Demo System. The cluster is a temporary setup and will be decommissioned soon after the workshop is concluded.
 
-There will be multiple persons using the system with unique usernames. Setup OpenShift username environment variable as you will be assigned one during the introduction of the workshop.
+There will be multiple people using the system with unique usernames. You will be assigned one during the introduction of the workshop. Setup OpenShift username environment variable.
 
 The workshop instructions will use `user2` but expect it to be unique per participant.
 
