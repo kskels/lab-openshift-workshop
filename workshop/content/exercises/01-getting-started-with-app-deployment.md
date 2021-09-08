@@ -3,7 +3,7 @@ This hands-on lab helps users to get started with application deployment on Open
 
 ## Explore the Web Console
 
-The OpenShift Web interface easily accessible via the `homeroom` learning environment. To access it, navigate to the upper section of the Web interface and select `Console` tab.
+The OpenShift Web interface is easily accessible via the `homeroom` learning environment. To access it, navigate to the upper section of the Web interface and select `Console` tab.
 
 ### Explore
 
@@ -17,9 +17,9 @@ Under `+Add` section of the *Developer* view, note various catalogue and sample 
 
 ### Create a Project
 
-OpenShift Projects is a mechanism to scope resources in a cluster, see more information at [Working with Projects](https://docs.openshift.com/container-platform/4.8/applications/projects/working-with-projects.html) .
+OpenShift Projects is a mechanism to scope resources in a cluster. See more information at [Working with Projects](https://docs.openshift.com/container-platform/4.8/applications/projects/working-with-projects.html) .
 
-To create a project click the drop-down menu to see `All Projects` and select `Create Project`. Select a unique Project name that will be used for application deployment for example `${OPENSHIFT_USERNAME}-proj1`.
+To create a project click the drop-down menu to see `All Projects` and select `Create Project`. Select a unique Project name that will be used for application deployment. For example `${OPENSHIFT_USERNAME}-proj1`.
 
 
 
@@ -89,7 +89,7 @@ oc describe <object>
 
 ### Deploy Redis from Docker Image
 
-Additionally to `redis6` image, expore other Red Hat certified [container images](https://catalog.redhat.com/software/containers/explore) .
+Additionally to `redis6` image, explore other Red Hat certified [container images](https://catalog.redhat.com/software/containers/explore) .
 
 ```bash
 oc new-app --docker-image=registry.redhat.io/rhel8/redis-6
