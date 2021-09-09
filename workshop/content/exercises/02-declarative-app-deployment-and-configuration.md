@@ -355,12 +355,17 @@ spec:
           mountPath: "/etc/secrets/spring-app"
           readOnly: true
 
+        livenessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 20
+          timeoutSeconds: 10
         readinessProbe:
-          failureThreshold: 3
           httpGet:
+            scheme: HTTP
             path: /
             port: 8080
-            scheme: HTTP
 
       # define volumes
       volumes:
@@ -439,12 +444,17 @@ spec:
           mountPath: "/etc/secrets/spring-app"
           readOnly: true
 
+        livenessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 20
+          timeoutSeconds: 10
         readinessProbe:
-          failureThreshold: 3
           httpGet:
+            scheme: HTTP
             path: /
             port: 8080
-            scheme: HTTP
 
         resources:
           requests:

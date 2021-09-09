@@ -204,6 +204,9 @@ ASPNET_CORE_APP_PORT_8080_TCP_PORT=8080
 ASPNET_CORE_REDIS_PORT_6379_TCP_PROTO=tcp
 (...)
 ```
+### Further Reading
+
+Explore [Ingress Controller](https://docs.openshift.com/container-platform/4.8/networking/ingress-operator.html), [route configuration](https://docs.openshift.com/container-platform/4.8/networking/routes/route-configuration.html) and [secured routes](https://docs.openshift.com/container-platform/4.8/networking/routes/secured-routes.html) to learn more.
 
 ### Review from Web Console
 
