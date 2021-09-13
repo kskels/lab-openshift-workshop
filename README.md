@@ -2,9 +2,9 @@ OpenShift Workshop
 ==================
 
 
-This is content repository for an interactive workshop that helps users to get familiar with *Kubernetes* and *OpenShift Container Platform 4* core concepts focusing on declarative application deployment using `YAML` manifests.
+This is a content repository for an interactive workshop that helps users to get familiar with *Kubernetes* and *OpenShift Container Platform 4* core concepts. The workshop focuses on declarative application deployment using `YAML` manifests.
 
-See *YouTube* instructions video for information on [OpenShift Homeroom](https://www.youtube.com/watch?v=HxBfCRGCvyc&t=251s) learning environment and how to deploy this lab onto your own *OpenShift* cluster.
+See [YouTube instructions video](https://www.youtube.com/watch?v=HxBfCRGCvyc&t=251s) for information on *OpenShift Homeroom* learning environment and how to deploy this lab onto your own *OpenShift 4* cluster.
 
 ### Deploy the Workshop
 
