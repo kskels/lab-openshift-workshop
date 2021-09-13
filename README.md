@@ -8,7 +8,7 @@ See [YouTube instructions video](https://www.youtube.com/watch?v=HxBfCRGCvyc&t=2
 
 ### Deploy the Workshop
 
-The deployment of the `spawner` component requires `admin` privileges as it provides seemless integration with *OpenShift* oauth.
+Deployment of the `spawner` component requires `admin` privileges as it provides seemless integration with *OpenShift* oauth.
 
 Create a new project
 
