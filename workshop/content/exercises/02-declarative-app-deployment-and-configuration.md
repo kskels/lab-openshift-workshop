@@ -47,7 +47,7 @@ spec:
 Use the `oc` command line interface to deploy the manifest.
 
 ```bash
-oc create -f spring-app-deployment.yaml
+oc apply -f spring-app-deployment.yaml
 ```
 
 Once applied, explore objects created by the `Deployment` configuration. Observe three objects created `pod`, `replicaset`, and `deployment`.
@@ -206,7 +206,7 @@ stringData:
 Use the `oc` command line interface to create the secret
 
 ```bash
-oc create -f spring-app-secret.yaml
+oc apply -f spring-app-secret.yaml
 ```
 
 Observe newly created secret among system pre-created ones for the project.

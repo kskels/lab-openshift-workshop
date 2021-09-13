@@ -1,4 +1,9 @@
-This hands-on lab helps users to get familiar with [deployment strategies](https://docs.openshift.com/container-platform/4.8/applications/deployments/deployment-strategies.html).
+This section helps users to get familiar with *Kubernetes* [deployment strategies](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy).
+
+You can additionally explore *OpenShift DeploymentConfig* object that provides similar but different method for fine-grained management over common user applications. See more at [Understanding Deployment and DeploymentConfig objects](https://docs.openshift.com/container-platform/4.8/applications/deployments/what-deployments-are.html).
+
+
+
 
 ### Create a Project
 
@@ -9,13 +14,11 @@ oc new-project ${OPENSHIFT_USERNAME}-proj5
 
 ### Rolling Strategy
 
-#### Create an Application
+Create an example application with multiple replicas using *RollingUpdate* as the deployment strategy.
 
-Create example application with multiple replicas using *RollingUpdate* as deployment strategy. We will use conservative parameters for `maxSurge` and `maxUnavailable` for update to take slightly longer to be able to observe the process.
+We will use conservative parameters for `maxSurge` and `maxUnavailable` for update to take slightly longer to be able to observe the process. Notice `v1` image version used `quay.io/kskels/deployment-example:v1` for the application.
 
-Notice `v1` image version used `quay.io/kskels/deployment-example:v1` for the application.
-
-Create example deployment
+Copy the following contents into a `.yaml` file, for example `example-app-deployment.yaml`
 
 ```yaml
 apiVersion: apps/v1
@@ -31,8 +34,8 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: "10%" 
-      maxUnavailable: "5%" 
+      maxSurge: "10%"
+      maxUnavailable: "5%"
 
   template:
     metadata:
@@ -46,7 +49,14 @@ spec:
         - containerPort: 8080
 ```
 
-Create example service
+Apply the manifest
+
+```bash
+oc apply -f example-app-deployment.yaml
+```
+
+
+Copy the following contents into a `.yaml` file, for example `example-app-service.yaml`
 
 ```yaml
 apiVersion: v1
@@ -62,7 +72,14 @@ spec:
     app: example-app
 ```
 
-Create example route
+Apply the manifest
+
+```bash
+oc apply -f example-app-service.yaml
+```
+
+
+Copy the following contents into a `.yaml` file, for example `example-app-route.yaml`
 
 ```yaml
 apiVersion: route.openshift.io/v1
@@ -81,33 +98,39 @@ spec:
     weight: 100
 ```
 
-Verify that application is successfully deployed.
+Apply the manifest
+
+```bash
+oc apply -f example-app-route.yaml
+```
+
+
+Verify that application is successfully deployed
 
 ```bash
 oc rollout status deploy/example-app
-
 oc get pods
-oc get route
 ```
 
 Access the application via route and make sure `v1` version is running.
 
-Check deployment rollout history of the application
+```bash
+oc get route
+```
+
+Check the deployment rollout history of the application
 
 ```bash
 oc rollout history deploy/example-app
 ```
 
 
-
 #### Update the Deployment
 
-In the deployment manifest, update the image version from `v1` to `v2`, the image should look as `quay.io/kskels/deployment-example:v2`.
-
-Save and apply the updated manifest.
+In the deployment manifest, update the image version from `v1` to `v2`, the image should look as `quay.io/kskels/deployment-example:v2`. Save and apply the updated manifest
 
 ```bash
-oc apply -f example-app.yaml
+oc apply -f example-app-deployment.yaml
 ```
 
 Observe upgrade process by checking the *Pods*
@@ -122,8 +145,11 @@ Check the rollout status
 oc rollout status deploy/example-app
 ```
 
-Access the application via route and verify that `v2` version is running.
+Access the application via route and verify that `v2` version is running
 
+```bash
+oc get route
+```
 
 #### Rollback the Deployment
 
@@ -136,10 +162,14 @@ oc rollout history deploy/example-app
 Rollback the desired version
 
 ```bash
-kubectl rollout history deploy/example-app --revision=1
+oc rollout undo deploy/example-app
 ```
 
-Access the application via route and verify that `v1` version is running.
+Access the application via route and verify that `v1` version is running
+
+```bash
+oc get route
+```
 
 
 ### Recreate Stategy
@@ -147,10 +177,10 @@ Access the application via route and verify that `v1` version is running.
 Delete previous deployment
 
 ```bash
-oc delete -f example-app.yaml
+oc delete -f example-app-deployment.yaml
 ```
 
-Update the deployment manifest to use *Recreate* strategy and reset image version to `v1`.
+Update the deployment manifest to use *Recreate* strategy and reset image version to `v1`
 
 ```yaml
 apiVersion: apps/v1
@@ -178,10 +208,10 @@ spec:
         - containerPort: 8080
 ```
 
-Create the deployment
+Apply the manifest
 
 ```bash
-oc create -f example-app.yaml
+oc apply -f example-app-deployment.yaml
 ```
 
 Check for successful deployment
@@ -192,10 +222,10 @@ oc rollout status deploy/example-app
 
 In the deployment manifest, update the image version from `v1` to `v2`, the image should look as `quay.io/kskels/deployment-example:v2`.
 
-Save and apply the updated manifest.
+Save and apply the updated manifest
 
 ```bash
-oc apply -f example-app.yaml
+oc apply -f example-app-deployment.yaml
 ```
 
 Observe the *Pods* and note differences from *RollingUpdate*.

@@ -49,7 +49,7 @@ spec:
 Use the `oc` command line interface to create the object
 
 ```bash
-oc create -f redis-deployment.yaml
+oc apply -f redis-deployment.yaml
 ```
 
 To explose the service, create and save `redis-service.yaml` with the following contents
@@ -72,7 +72,7 @@ spec:
 Use the `oc` command line interface to create the object
 
 ```bash
-oc create -f redis-service.yaml
+oc apply -f redis-service.yaml
 ```
 
 Explore objects created using `get` and `describe` commands
@@ -116,7 +116,7 @@ spec:
 Use the `oc` command line interface to create the object
 
 ```bash
-oc create -f aspnet-core-app-deployment.yaml
+oc apply -f aspnet-core-app-deployment.yaml
 ```
 
 Create and save `aspnet-core-app-service.yaml` with the following contents
@@ -139,7 +139,7 @@ spec:
 Use the `oc` command line interface to create the object
 
 ```bash
-oc create -f aspnet-core-app-service.yaml
+oc apply -f aspnet-core-app-service.yaml
 ```
 
 Finally, create and save `aspnet-core-app-route.yaml` with the following contents
@@ -166,7 +166,7 @@ spec:
 Use the `oc` command line interface to create the object
 
 ```bash
-oc create -f aspnet-core-app-route.yaml
+oc apply -f aspnet-core-app-route.yaml
 ```
 
 Explore newly created objects including *Services* and *Routes*.
