@@ -1,5 +1,5 @@
 WORKSHOP_NAME=lab-openshift-workshop
-WORKSHOP_IMAGE=quay.io/kskels/lab-openshift-workshop:1.0
+WORKSHOP_IMAGE=quay.io/kskels/lab-openshift-workshop:1.1
 WORKSHOP_TITLE="OpenShift Workshop"
 WORKSHOP_DESCRIPTION="Supporting labs for a generic OpenShift workshop"
 
