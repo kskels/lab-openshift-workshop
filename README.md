@@ -35,7 +35,7 @@ $ .workshop/scripts/build-workshop.sh
 
 ### Editing Exercises
 
-The exercises are located under `workshop/content/exercises` and written in *Markdown* format. It is convenient to use tools like [Grip](https://github.com/joeyespo/grip) to instant preview while developing the content
+The exercises are located under `workshop/content/exercises` and written in *Markdown* format. It is convenient to use tools like [Grip](https://github.com/joeyespo/grip) to instantly preview the result while working on the content
 
 ```bash
 $ grip workshop/content/exercises/01-getting-started-with-app-deployment.md
