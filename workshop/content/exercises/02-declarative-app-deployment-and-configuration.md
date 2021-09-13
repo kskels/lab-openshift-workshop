@@ -1,4 +1,4 @@
-This hands-on lab helps users to get familiar with declarative application deployment and explores configuration aspects of the application.
+This hands-on lab helps users to get familiar with declarative application deployment and explores configuration aspects of containerized applications.
 
 We will be using YAML manifests for application deployments. While JSON is also supported, YAML is more wide-spread and tends to be more user-friendly. Please take a look at the Kubernetes [configuration tips](https://kubernetes.io/docs/concepts/configuration/overview/) for more information.
 
