@@ -8,6 +8,8 @@ See [YouTube instructions video](https://www.youtube.com/watch?v=HxBfCRGCvyc&t=2
 
 ### Deploy the Workshop
 
+The deployment of the `spawner` component requires `admin` privileges as it provides seemless integration with *OpenShift* oauth.
+
 Create a new project
 
 ```bash
@@ -27,7 +29,7 @@ Deploy the Spawner
 $ .workshop/scripts/deploy-spawner.sh
 ```
 
-Rebuild, and re-deploy custom image
+Rebuild and re-deploy custom image
 
 ```bash
 $ .workshop/scripts/build-workshop.sh
