@@ -1,8 +1,8 @@
-This hands-on lab helps users to get familiar with declarative application deployment and explores configuration aspects of containerized applications.
+This hands-on lab helps users to get familiar with declarative application deployment and explores various configuration aspects of containerized applications.
 
-We will be using YAML manifests for application deployments. While JSON is also supported, YAML is more wide-spread and tends to be more user-friendly. Please take a look at the Kubernetes [configuration tips](https://kubernetes.io/docs/concepts/configuration/overview/) for more information.
+We will be using *YAML* manifests for application deployments. While *JSON* is also supported, *YAML* is more wide-spread and tends to be more user-friendly. Please take a look at the Kubernetes [configuration tips](https://kubernetes.io/docs/concepts/configuration/overview/) for more information.
 
-We will start with simple bare-bones application manifest and keep adding various features and concepts such as labels, environment variables, secrets, health probes, and resource limits.
+We will start with simple bare-bones application manifest and keep adding features and concepts such as labels, environment variables, secrets, health probes, and resource limits.
 
 If you encounter any issues copying the contents into the terminal, you may optionally clone the repo and you will find all the code snippets under `deploy/labs`
 
@@ -17,9 +17,9 @@ export OPENSHIFT_USERNAME=`oc whoami`
 oc new-project ${OPENSHIFT_USERNAME}-proj3
 ```
 
-### Deploy the Spring Boot Application
+### Deploy Spring Boot Application
 
-The following is a single replica deployment of a container image running Spring Boot web application. Copy the contents and save them as a `.yaml` file, for example `spring-app-deployment.yaml`.
+The following *YAML* manifest is a single replica deployment of a container image running Spring Boot web application. Copy the contents and save them as a `.yaml` file, for example `spring-app-deployment.yaml`
 
 
 ```yaml
@@ -42,15 +42,15 @@ spec:
         image: quay.io/kskels/spring-app:latest
         ports:
         - containerPort: 8080
-``` 
+```
 
-Use the `oc` command line interface to deploy the manifest.
+Use the `oc` command line interface to deploy the manifest
 
 ```bash
 oc apply -f spring-app-deployment.yaml
 ```
 
-Once applied, explore objects created by the `Deployment` configuration. Observe three objects created `pod`, `replicaset`, and `deployment`.
+Once applied, explore objects created by the `Deployment` configuration. Observe three objects created `pod`, `replicaset`, and `deployment`
 
 ```bash
 oc get all
@@ -63,7 +63,7 @@ oc describe deploy/spring-app
 oc get -o yaml deploy/spring-app
 ```
 
-For futher exploring, once the `Pod` is in a `Running` state, you are able to access the containers
+For futher exploring, once the `Pod` is in `Running` state, you are able to access the containers
 
 ```bash
 oc get pods
@@ -79,7 +79,7 @@ oc exec -it spring-app-bbf96556-zlznz -- bash
 
 Please see general information on [labels and selectors](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/).
 
-For a more practical view, switch between the namespaces `${OPENSHIFT_USERNAME}-proj1` and `${OPENSHIFT_USERNAME}-proj3` and observe the labels that were automatically created by OpenShift when applications are deployed via `oc new-app` and the Web Console. 
+For a more practical view, switch between the namespaces `${OPENSHIFT_USERNAME}-proj1` and `${OPENSHIFT_USERNAME}-proj3` and observe the labels that were automatically created by OpenShift when applications are deployed via the *Console*.
 
 Here are some [common labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/) for Kubernetes.
 
@@ -189,7 +189,7 @@ The `Secrets` can be accessed via container environment variables and/or as file
 
 #### Create a Secret
 
-Copy the contents of the sample and save as a `.yaml` file, for example `spring-app-secret.yaml`.
+Copy the contents of the sample and save as a `.yaml` file, for example `spring-app-secret.yaml`
 
 ```yaml
 apiVersion: v1
@@ -209,7 +209,7 @@ Use the `oc` command line interface to create the secret
 oc apply -f spring-app-secret.yaml
 ```
 
-Observe newly created secret among system pre-created ones for the project.
+Observe newly created secret among system pre-created ones for the project
 
 ```bash
 oc get secrets
@@ -305,7 +305,7 @@ tekton123!
 
 Health probes is a mechanism to detect and handle unhealthy containers. See more information at [monitoring application health](https://docs.openshift.com/container-platform/4.8/applications/application-health.html).
 
-In the following example we will setup a `readinessProbe` to ensure the application's web interface is available
+In the following example we will setup `livenessProbe` and `readinessProbe` to ensure the application's web interface is available
 
 ```yaml
 apiVersion: apps/v1
@@ -361,6 +361,7 @@ spec:
           initialDelaySeconds: 15
           periodSeconds: 20
           timeoutSeconds: 10
+
         readinessProbe:
           httpGet:
             scheme: HTTP
@@ -396,6 +397,8 @@ You can optionally specify how much CPU, memory, and local ephemeral storage (if
 
 See more documentation about [quotas and limits](https://docs.openshift.com/online/pro/dev_guide/compute_resources.html).
 
+Update the deployment with resource limits
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -450,6 +453,7 @@ spec:
           initialDelaySeconds: 15
           periodSeconds: 20
           timeoutSeconds: 10
+
         readinessProbe:
           httpGet:
             scheme: HTTP
@@ -490,4 +494,4 @@ oc describe po/spring-app-66f58bcc98-4q526
 
 ### Review from Web Console
 
-Switch back to the Console and explore newly created objects.
+Switch back to the *Console* and explore newly created objects.
