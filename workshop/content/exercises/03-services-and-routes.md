@@ -1,7 +1,7 @@
-This hands-on lab helps users to get familiar with Services and Routes.
+This hands-on lab helps users to get familiar with *Services* and *Routes*.
 
 
-If any issues encountered to copy contents into the terminal, you may optionally clone the repo and you will find all the snippets under `deploy/labs`
+If any issues encountered to copy the manifest contents into the terminal, you may optionally clone the repo and you will find all the snippets under `deploy/labs`
 
 ```bash
 git clone https://github.com/kskels/aspnet-core-app
@@ -18,7 +18,7 @@ oc new-project ${OPENSHIFT_USERNAME}-proj4
 
 Services provide internal load-balancing and service discovery across pods. See [Service](https://kubernetes.io/docs/concepts/services-networking/service/) for more information.
 
-We will use a sample `.NET` application with Redis as a backend to explore services.
+We will use a sample `.NET` application with *Redis* as a backend to explore services.
 
 #### Deploy Redis
 
@@ -52,7 +52,7 @@ Use the `oc` command line interface to create the object
 oc apply -f redis-deployment.yaml
 ```
 
-To explose the service, create and save `redis-service.yaml` with the following contents
+To expose the service, create and save `redis-service.yaml` with the following contents
 
 ```yaml
 apiVersion: v1
@@ -134,7 +134,7 @@ spec:
       protocol: TCP
   selector:
     app: aspnet-core-app
-``` 
+```
 
 Use the `oc` command line interface to create the object
 
@@ -180,7 +180,7 @@ oc describe route/aspnet-core-app
 oc get routes
 ```
 
-You should now be able to access the application via the web browser.
+You should now be able to access the application via web browser.
 
 Explore services from one of the `aspnet-core-app` *Pods*
 
@@ -210,4 +210,4 @@ Explore [Ingress Controller](https://docs.openshift.com/container-platform/4.8/n
 
 ### Review from Web Console
 
-Switch back to the Console and explore newly created objects.
+Switch back to the *Console* and explore newly created objects.
