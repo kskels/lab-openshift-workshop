@@ -5,8 +5,8 @@ WORKSHOP_DESCRIPTION="Supporting labs for a generic OpenShift workshop"
 
 TERMINAL_IMAGE=quay.io/openshifthomeroom/workshop-terminal:3.4.3
 DASHBOARD_IMAGE=quay.io/openshifthomeroom/workshop-dashboard:5.0.1
-SPAWNER_IMAGE=quay.io/openshifthomeroom/workshop-spawner:7.2.2
-CONSOLE_IMAGE=quay.io/openshift/origin-console:4.8.0
+SPAWNER_IMAGE=quay.io/kskels/workshop-spawner:develop
+CONSOLE_IMAGE=quay.io/openshift/origin-console:4.9
 
 SPAWNER_VERSION=7.2.2
 #SPAWNER_MODE=learning-portal
